@@ -13,10 +13,22 @@ export default function SignupBanner({ props }) {
   return (
     <div style={styles.container}>
       <form style={styles.form} onSubmit={handleSubmit}>
-        <div>Enter Your Name Below</div>
+        <div>Please enter your account details below</div>
         <label>
-          Name{' '}
-          <input type="text" placeholder="banana" onChange={myChangeHandler} />
+          Email{' '}
+          <input
+            type="text"
+            placeholder="Account email"
+            onChange={myChangeHandler}
+          />
+        </label>
+        <label>
+          Password{' '}
+          <input
+            type="text"
+            placeholder="Password"
+            onChange={myChangeHandler}
+          />
         </label>
         <input type="submit" value="Enter Submit" />
       </form>
