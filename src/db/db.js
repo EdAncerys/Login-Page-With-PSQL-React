@@ -2,10 +2,14 @@ const Pool = require('pg').Pool;
 
 const pool = new Pool({
   user: 'ed',
-  password: '4911',
+  password: '',
+  database: 'web_app_login',
   host: 'localhost',
-  port: 3000,
-  database: 'my_app_login',
+});
+
+pool.connect((err) => {
+  if (!err) console.error('DB connection successful');
+  else console.error('Error connecting to client');
 });
 
 module.exports = pool;
