@@ -4,6 +4,8 @@ import colors from '../config/colors';
 
 export default function Form({
   getUsers,
+  fNameChangeHandler,
+  lNameChangeHandler,
   emailChangeHandler,
   passwordChangeHandler,
 }) {
@@ -15,7 +17,7 @@ export default function Form({
         <input
           type="text"
           placeholder="First Name"
-          onChange={emailChangeHandler}
+          onChange={fNameChangeHandler}
         />
       </label>
       <label>
@@ -23,7 +25,7 @@ export default function Form({
         <input
           type="text"
           placeholder="Last Name"
-          onChange={emailChangeHandler}
+          onChange={lNameChangeHandler}
         />
       </label>
       <label>
@@ -51,9 +53,8 @@ export default function Form({
 const styles = {
   container: {
     display: 'grid',
-    gridTemplateColumns: 'auto',
-    gridTemplateRows: 'repeat(7, auto)',
     justifyContent: 'center',
+    width: 300,
     rowGap: 20,
     padding: 20,
     borderRadius: 10,

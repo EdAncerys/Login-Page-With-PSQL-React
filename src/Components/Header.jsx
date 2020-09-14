@@ -14,7 +14,6 @@ const styles = {
     display: 'grid',
     alignItems: 'center',
     height: 100,
-    width: '100vw',
     paddingLeft: '10vw',
     backgroundColor: colors.primary,
   },
