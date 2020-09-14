@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+import colors from '../config/colors';
+import Form from './Form';
+
 export default function SignupBanner({ props }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -26,41 +29,42 @@ export default function SignupBanner({ props }) {
     // console.log(event.target.value);
   };
 
+  const getUsers = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8000/users');
+      const jsonData = await response.json();
+
+      setUsers(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return (
     <div style={styles.container}>
-      <form style={styles.form} onSubmit={handleSubmit}>
-        <div>Please enter your account details below</div>
-        <label>
-          Email{' '}
-          <input
-            type="text"
-            placeholder="Account email"
-            onChange={emailChangeHandler}
-          />
-        </label>
-        <label>
-          Password{' '}
-          <input
-            type="text"
-            placeholder="Password"
-            onChange={passwordChangeHandler}
-          />
-        </label>
-        <input type="submit" value="Enter Submit" />
-      </form>
-      {users.length > 0 && (
-        <ul>
-          {users.map((user, index) => {
-            return (
-              <div key={index} style={styles.user}>
-                <div>{user.id}</div>
-                <div>Email: {email ? user.email : 'undefined'}</div>
-                <div>Password: {password ? user.email : 'undefined'}</div>
-              </div>
-            );
-          })}
-        </ul>
-      )}
+      <Form
+        getUsers={getUsers}
+        emailChangeHandler={emailChangeHandler}
+        passwordChangeHandler={passwordChangeHandler}
+      />
+
+      <div style={styles.user}>
+        {users.length > 0 && (
+          <ul>
+            {users.map((user, index) => {
+              return (
+                <div key={index} style={styles.userRow}>
+                  <div>ID: {user.id}</div>
+                  <div>First Name: {user.first_name}</div>
+                  <div>Last Name: {user.last_name}</div>
+                  <div>Email: {user.email}</div>
+                </div>
+              );
+            })}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
@@ -69,19 +73,21 @@ const styles = {
   container: {
     display: 'grid',
     justifyContent: 'center',
-    alignItems: 'start',
     marginTop: 50,
-    height: 400,
-  },
-  form: {
-    display: 'grid',
-    gridTemplateColumns: 300,
-    rowGap: 20,
   },
   user: {
     display: 'grid',
     justifyContent: 'center',
-    gridTemplateColumns: 'auto auto auto',
     gridGap: 10,
+  },
+  userRow: {
+    display: 'grid',
+    justifyContent: 'center',
+    gridTemplateColumns: 'auto auto auto auto',
+    columnGap: 10,
+    padding: 20,
+    borderRadius: 10,
+    marginRight: 30,
+    border: `1px solid ${colors.secondary}`,
   },
 };
