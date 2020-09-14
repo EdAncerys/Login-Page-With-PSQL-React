@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function SignupBanner({ props }) {
   const [email, setEmail] = useState();
@@ -7,10 +7,13 @@ export default function SignupBanner({ props }) {
 
   const id = new Date().getTime();
 
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setUsers((users) => [...users, { id, email: email, password: password }]);
-    console.log(users);
   };
 
   const emailChangeHandler = (event) => {
