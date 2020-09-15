@@ -3,48 +3,57 @@ import React from 'react';
 import colors from '../config/colors';
 
 export default function Form({
+  fName,
+  lName,
+  email,
+  password,
   getUsers,
-  fNameChangeHandler,
-  lNameChangeHandler,
-  emailChangeHandler,
-  passwordChangeHandler,
+  onSubmitForm,
+  setfName,
+  setlName,
+  setEmail,
+  setPassword,
 }) {
   return (
-    <form style={styles.container} onSubmit={getUsers}>
+    <form style={styles.container} onSubmit={onSubmitForm}>
       <div>Please enter your account details below</div>
       <label>
         First Name{' '}
         <input
           type="text"
+          value={fName}
           placeholder="First Name"
-          onChange={fNameChangeHandler}
+          onChange={(e) => setfName(e.target.value)}
         />
       </label>
       <label>
         Last Name{' '}
         <input
           type="text"
+          value={lName}
           placeholder="Last Name"
-          onChange={lNameChangeHandler}
+          onChange={(e) => setlName(e.target.value)}
         />
       </label>
       <label>
-        Email Name{' '}
+        Email{' '}
         <input
           type="text"
+          value={email}
           placeholder="Account email"
-          onChange={emailChangeHandler}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </label>
       <label>
         Password{' '}
         <input
           type="text"
+          value={password}
           placeholder="Password"
-          onChange={passwordChangeHandler}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <input type="submit" value="Enter Submit" />
+      <input type="submit" value="Submit" />
       <input type="submit" value="Display Users From DB" onClick={getUsers} />
     </form>
   );
