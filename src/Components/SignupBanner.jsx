@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Form from './Form';
 
 import colors from '../config/colors';
-import Form from './Form';
 
 export default function SignupBanner({ props }) {
   const [fName, setfName] = useState();
@@ -40,7 +40,7 @@ export default function SignupBanner({ props }) {
   const getUsers = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/users');
+      const response = await fetch('http://localhost:5000/users');
       const jsonData = await response.json();
 
       setUsers(jsonData);
@@ -75,7 +75,7 @@ export default function SignupBanner({ props }) {
     e.preventDefault();
     try {
       const body = { fName };
-      const response = await fetch('http://localhost:8000/users', {
+      const response = await fetch('http://localhost:5000/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

@@ -3,8 +3,9 @@ const Pool = require('pg').Pool;
 const pool = new Pool({
   user: 'ed',
   password: '',
-  database: 'web_app_login',
   host: 'localhost',
+  port: 5432,
+  database: 'web_app_login',
 });
 
 pool.connect((err) => {
