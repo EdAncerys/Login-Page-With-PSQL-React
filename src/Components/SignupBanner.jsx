@@ -16,26 +16,26 @@ export default function SignupBanner({ props }) {
     console.log(users, fName, lName, email, password);
   }, [users, fName, lName, email, password]);
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   setUsers((users) => [...users, { id, email: email, password: password }]);
-  // };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setUsers((users) => [...users, { id, email: email, password: password }]);
+  };
 
-  // const fNameChangeHandler = (event) => {
-  //   setfName(event);
-  // };
+  const fNameChangeHandler = (event) => {
+    setfName(event);
+  };
 
-  // const lNameChangeHandler = (event) => {
-  //   setlName(event.target.value);
-  // };
+  const lNameChangeHandler = (event) => {
+    setlName(event.target.value);
+  };
 
-  // const emailChangeHandler = (event) => {
-  //   setEmail(event.target.value);
-  // };
+  const emailChangeHandler = (event) => {
+    setEmail(event.target.value);
+  };
 
-  // const passwordChangeHandler = (event) => {
-  //   setPassword(event.target.value);
-  // };
+  const passwordChangeHandler = (event) => {
+    setPassword(event.target.value);
+  };
 
   const getUsers = async (event) => {
     event.preventDefault();
@@ -49,32 +49,10 @@ export default function SignupBanner({ props }) {
     }
   };
 
-  // const onSubmitForm = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const body = {
-  //       fName: fName,
-  //       lName: lName,
-  //       email: email,
-  //       password: password,
-  //     };
-  //     const response = await fetch('http://localhost:8000/users', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify(body),
-  //     });
-  //     console.log(body);
-  //     setUsers(...users, body);
-  //     // window.location = '/';
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // };
-
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const body = { fName };
+      const body = { fName, lName, email, password };
       const response = await fetch('http://localhost:5000/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -89,7 +67,7 @@ export default function SignupBanner({ props }) {
 
   return (
     <div style={styles.container}>
-      {/* <div style={styles.form}>
+      <div style={styles.form}>
         <Form
           fName={fName}
           setfName={setfName}
@@ -102,18 +80,7 @@ export default function SignupBanner({ props }) {
           getUsers={getUsers}
           onSubmitForm={onSubmitForm}
         />
-      </div> */}
-
-      <form className="d-flex mt-5" onSubmit={onSubmitForm}>
-        <input
-          type="text"
-          className="form-control"
-          value={fName}
-          onChange={(e) => setfName(e.target.value)}
-        />
-        <button className="btn btn-success">Add</button>
-        <input type="submit" value="Display Users From DB" onClick={getUsers} />
-      </form>
+      </div>
 
       {users.length > 0 && (
         <div style={styles.users}>
