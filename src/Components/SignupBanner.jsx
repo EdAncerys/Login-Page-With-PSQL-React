@@ -8,13 +8,14 @@ export default function SignupBanner({ props }) {
   const [lName, setlName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [ID, setID] = useState();
   const [users, setUsers] = useState([]);
 
   const id = new Date().getTime();
 
   useEffect(() => {
-    console.log(users, fName, lName, email, password);
-  }, [users, fName, lName, email, password]);
+    console.log(users, fName, lName, email, password, ID);
+  }, [users, fName, lName, email, password, ID]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -92,6 +93,9 @@ export default function SignupBanner({ props }) {
                 <div>Last Name: {user.lname}</div>
                 <div>Email: {user.email}</div>
                 <div>Password: {user.password}</div>
+                <div style={styles.delete} onClick={() => setID(user.id)}>
+                  Delete
+                </div>
               </div>
             );
           })}
@@ -124,5 +128,11 @@ const styles = {
     gridTemplateColumns: 'auto auto auto auto auto',
     padding: 10,
     columnGap: 10,
+  },
+  delete: {
+    border: `1px solid ${colors.primary}`,
+    borderRadius: 10,
+    padding: 5,
+    cursor: 'pointer',
   },
 };
