@@ -7,7 +7,7 @@ export default function Form({
   lName,
   email,
   password,
-  getUsers,
+  updateUser,
   onSubmitForm,
   setfName,
   setlName,
@@ -54,7 +54,7 @@ export default function Form({
         />
       </label>
       <input type="submit" value="Submit" />
-      <input type="submit" value="Display Users From DB" onClick={getUsers} />
+      <input type="submit" value="Update User Details" onClick={updateUser} />
     </form>
   );
 }

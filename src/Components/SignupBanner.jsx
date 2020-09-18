@@ -8,17 +8,16 @@ export default function SignupBanner({ props }) {
   const [lName, setlName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [ID, setID] = useState();
   const [users, setUsers] = useState([]);
+  const [id, setId] = useState();
 
-  const id = new Date().getTime();
+  // const id = new Date().getTime();
 
   useEffect(() => {
-    console.log(users, fName, lName, email, password, ID);
-  }, [users, fName, lName, email, password, ID]);
+    getUsers();
+  }, []);
 
-  const getUsers = async (event) => {
-    event.preventDefault();
+  const getUsers = async () => {
     try {
       const response = await fetch('http://localhost:5000/users');
       const jsonData = await response.json();
@@ -37,6 +36,22 @@ export default function SignupBanner({ props }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
+      });
+
+      window.location = '/';
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const updateUser = async (e) => {
+    e.preventDefault();
+    try {
+      const editUser = { fName, lName, email, password };
+      const response = await fetch(`http://localhost:5000/users/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editUser),
       });
 
       window.location = '/';
@@ -69,7 +84,7 @@ export default function SignupBanner({ props }) {
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
-          getUsers={getUsers}
+          updateUser={updateUser}
           onSubmitForm={onSubmitForm}
         />
       </div>
@@ -84,14 +99,20 @@ export default function SignupBanner({ props }) {
                 <div>Last Name: {user.lname}</div>
                 <div>Email: {user.email}</div>
                 <div>Password: {user.password}</div>
+                <div style={styles.delete} onClick={() => deleteUser(user.id)}>
+                  Delete
+                </div>
                 <div
-                  style={styles.delete}
+                  style={styles.update}
                   onClick={() => {
-                    deleteUser(user.id);
-                    // console.log(user.id, { users });
+                    setfName(user.fname ? user.fname : '');
+                    setlName(user.lname ? user.lname : '');
+                    setEmail(user.email ? user.email : '');
+                    setPassword(user.password ? user.password : '');
+                    setId(user.id);
                   }}
                 >
-                  Delete
+                  Update
                 </div>
               </div>
             );
@@ -123,7 +144,7 @@ const styles = {
     display: 'grid',
     justifyContent: 'center',
     alignItems: 'center',
-    gridTemplateColumns: 'repeat(6, auto)',
+    gridTemplateColumns: 'repeat(7, auto)',
     padding: 10,
     columnGap: 10,
   },
@@ -131,6 +152,14 @@ const styles = {
     border: `1px solid ${colors.danger}`,
     borderRadius: 10,
     backgroundColor: colors.danger,
+    color: colors.white,
+    padding: 5,
+    cursor: 'pointer',
+  },
+  update: {
+    border: `1px solid ${colors.primary}`,
+    borderRadius: 10,
+    backgroundColor: colors.primary,
     color: colors.white,
     padding: 5,
     cursor: 'pointer',

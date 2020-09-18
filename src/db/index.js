@@ -43,7 +43,24 @@ app.listen(port, () => {
   console.log(`Listening on port number ${port}`);
 });
 
-//delete a todo
+//update a user
+
+app.put('/users/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { fName, lName, email, password } = req.body;
+    const updateUser = await pool.query(
+      'UPDATE users SET fname = $1, lname = $2, email = $3, password = $4 WHERE id = $5',
+      [fName, lName, email, password, id]
+    );
+
+    res.json('Todo was updated!');
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//delete a user
 
 app.delete('/users/:id', async (req, res) => {
   try {
