@@ -17,27 +17,6 @@ export default function SignupBanner({ props }) {
     console.log(users, fName, lName, email, password, ID);
   }, [users, fName, lName, email, password, ID]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setUsers((users) => [...users, { id, email: email, password: password }]);
-  };
-
-  const fNameChangeHandler = (event) => {
-    setfName(event);
-  };
-
-  const lNameChangeHandler = (event) => {
-    setlName(event.target.value);
-  };
-
-  const emailChangeHandler = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const passwordChangeHandler = (event) => {
-    setPassword(event.target.value);
-  };
-
   const getUsers = async (event) => {
     event.preventDefault();
     try {
@@ -61,6 +40,18 @@ export default function SignupBanner({ props }) {
       });
 
       window.location = '/';
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const deleteUser = async (id) => {
+    try {
+      const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
+        method: 'DELETE',
+      });
+
+      setUsers(users.filter((user) => user.id !== id));
     } catch (err) {
       console.error(err.message);
     }
@@ -93,7 +84,13 @@ export default function SignupBanner({ props }) {
                 <div>Last Name: {user.lname}</div>
                 <div>Email: {user.email}</div>
                 <div>Password: {user.password}</div>
-                <div style={styles.delete} onClick={() => setID(user.id)}>
+                <div
+                  style={styles.delete}
+                  onClick={() => {
+                    deleteUser(user.id);
+                    // console.log(user.id, { users });
+                  }}
+                >
                   Delete
                 </div>
               </div>
