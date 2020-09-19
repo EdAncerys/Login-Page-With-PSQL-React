@@ -15,7 +15,7 @@ export default function Form({
   setPassword,
 }) {
   return (
-    <form style={styles.container} onSubmit={addUser}>
+    <form style={styles.container} onSubmit={(e) => addUser(e)}>
       <div>Please enter your account details below</div>
       <label>
         First Name{' '}

@@ -16,31 +16,8 @@ export default function SignupBanner({ props }) {
     db.getUsers(setUsers);
   }, []);
 
-  // const getUsers = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:5000/users');
-  //     const jsonData = await response.json();
-
-  //     setUsers(jsonData);
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // };
-
   const addUser = async (e) => {
-    e.preventDefault();
-    try {
-      const body = { fName, lName, email, password };
-      const response = await fetch('http://localhost:5000/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-
-      window.location = '/';
-    } catch (err) {
-      console.error(err.message);
-    }
+    db.addUser(e, fName, lName, email, password);
   };
 
   const updateUser = async (e) => {
