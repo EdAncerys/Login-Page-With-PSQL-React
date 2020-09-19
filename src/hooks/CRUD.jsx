@@ -27,7 +27,25 @@ const getUsers = async (setUsers) => {
   }
 };
 
+// Update user in db
+const updateUser = async (e, fName, lName, email, password, id) => {
+  e.preventDefault();
+  try {
+    const editUser = { fName, lName, email, password };
+    const response = await fetch(`http://localhost:5000/users/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(editUser),
+    });
+
+    window.location = '/';
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
 export default {
   getUsers,
   addUser,
+  updateUser,
 };

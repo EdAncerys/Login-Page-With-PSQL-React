@@ -21,19 +21,7 @@ export default function SignupBanner({ props }) {
   };
 
   const updateUser = async (e) => {
-    e.preventDefault();
-    try {
-      const editUser = { fName, lName, email, password };
-      const response = await fetch(`http://localhost:5000/users/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(editUser),
-      });
-
-      window.location = '/';
-    } catch (err) {
-      console.error(err.message);
-    }
+    db.updateUser(e, fName, lName, email, password, id);
   };
 
   const deleteUser = async (id) => {
