@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Form from './Form';
+import db from '../hooks/CRUD';
 
 import colors from '../config/colors';
 
@@ -11,24 +12,22 @@ export default function SignupBanner({ props }) {
   const [users, setUsers] = useState([]);
   const [id, setId] = useState();
 
-  // const id = new Date().getTime();
-
   useEffect(() => {
-    getUsers();
+    db.getUsers(setUsers);
   }, []);
 
-  const getUsers = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/users');
-      const jsonData = await response.json();
+  // const getUsers = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:5000/users');
+  //     const jsonData = await response.json();
 
-      setUsers(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+  //     setUsers(jsonData);
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
 
-  const onSubmitForm = async (e) => {
+  const addUser = async (e) => {
     e.preventDefault();
     try {
       const body = { fName, lName, email, password };
@@ -85,7 +84,7 @@ export default function SignupBanner({ props }) {
           password={password}
           setPassword={setPassword}
           updateUser={updateUser}
-          onSubmitForm={onSubmitForm}
+          addUser={addUser}
         />
       </div>
 

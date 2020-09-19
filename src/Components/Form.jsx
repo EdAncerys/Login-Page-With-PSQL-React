@@ -8,14 +8,14 @@ export default function Form({
   email,
   password,
   updateUser,
-  onSubmitForm,
+  addUser,
   setfName,
   setlName,
   setEmail,
   setPassword,
 }) {
   return (
-    <form style={styles.container} onSubmit={onSubmitForm}>
+    <form style={styles.container} onSubmit={addUser}>
       <div>Please enter your account details below</div>
       <label>
         First Name{' '}
