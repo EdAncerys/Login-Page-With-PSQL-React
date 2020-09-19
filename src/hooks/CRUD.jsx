@@ -44,8 +44,22 @@ const updateUser = async (e, fName, lName, email, password, id) => {
   }
 };
 
+// Delete user from db
+const deleteUser = async (id, setUsers, users) => {
+  try {
+    const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
+      method: 'DELETE',
+    });
+
+    setUsers(users.filter((user) => user.id !== id));
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
 export default {
   getUsers,
   addUser,
   updateUser,
+  deleteUser,
 };

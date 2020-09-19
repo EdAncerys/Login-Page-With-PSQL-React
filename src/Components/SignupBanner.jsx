@@ -25,15 +25,7 @@ export default function SignupBanner({ props }) {
   };
 
   const deleteUser = async (id) => {
-    try {
-      const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
-        method: 'DELETE',
-      });
-
-      setUsers(users.filter((user) => user.id !== id));
-    } catch (err) {
-      console.error(err.message);
-    }
+    db.deleteUser(id, setUsers, users);
   };
 
   return (
