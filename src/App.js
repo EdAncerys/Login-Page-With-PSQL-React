@@ -3,16 +3,25 @@ import './css/App.css';
 import React from 'react';
 import Header from './Components/Header';
 import SignupBanner from './Components/SignupBanner';
+import LoginBanner from './Components/LoginBanner';
 
 export default function App({ props }) {
   return (
     <div className="App" style={styles.container}>
       <Header />
-      <SignupBanner />
+      <div style={styles.wrapper}>
+        <LoginBanner />
+        <SignupBanner />
+      </div>
     </div>
   );
 }
 
 const styles = {
-  container: {},
+  wrapper: {
+    display: 'grid',
+    justifyContent: 'center',
+    gridTemplateColumns: 'auto auto',
+    columnGap: 30,
+  },
 };

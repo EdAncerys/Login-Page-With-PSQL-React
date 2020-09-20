@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Form from './Form';
+import SignupForm from './SignupForm';
 import db from '../hooks/CRUD';
 
 import colors from '../config/colors';
@@ -31,7 +31,7 @@ export default function SignupBanner({ props }) {
   return (
     <div style={styles.container}>
       <div style={styles.form}>
-        <Form
+        <SignupForm
           fName={fName}
           setfName={setfName}
           lName={lName}
