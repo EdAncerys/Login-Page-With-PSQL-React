@@ -1,15 +1,18 @@
 import React from 'react';
+import LoginForm from './LoginForm';
 
 export default function LoginBanner({ props }) {
   return (
     <div style={styles.container}>
-      <div>login</div>
+      <LoginForm />
     </div>
   );
 }
 
 const styles = {
   container: {
-    width: '40vh',
+    display: 'grid',
+    justifyContent: 'center',
+    marginTop: 50,
   },
 };

@@ -10,8 +10,8 @@ export default function App({ props }) {
     <div className="App" style={styles.container}>
       <Header />
       <div style={styles.wrapper}>
-        <LoginBanner />
         <SignupBanner />
+        <LoginBanner />
       </div>
     </div>
   );
