@@ -1,11 +1,12 @@
+import React, { useState } from 'react';
 import './css/App.css';
-
-import React from 'react';
 import Header from './Components/Header';
 import SignupBanner from './Components/SignupBanner';
 import LoginBanner from './Components/LoginBanner';
 
 export default function App({ props }) {
+  const [login, setLogin] = useState(false);
+
   return (
     <div className="App" style={styles.container}>
       <Header />

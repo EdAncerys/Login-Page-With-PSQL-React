@@ -10,7 +10,6 @@ app.use(express.json()); //req.body
 //ROUTES//
 
 //create a users
-
 app.post('/users', async (req, res) => {
   try {
     const { fName, lName, email, password } = req.body;
@@ -27,7 +26,6 @@ app.post('/users', async (req, res) => {
 });
 
 //get all users
-
 app.get('/users', async (req, res) => {
   try {
     const allUsers = await pool.query('SELECT * FROM users');
@@ -44,7 +42,6 @@ app.listen(port, () => {
 });
 
 //update a user
-
 app.put('/users/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -61,7 +58,6 @@ app.put('/users/:id', async (req, res) => {
 });
 
 //delete a user
-
 app.delete('/users/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -71,5 +67,20 @@ app.delete('/users/:id', async (req, res) => {
     res.json('Todo was deleted!');
   } catch (err) {
     console.log(err.message);
+  }
+});
+
+//login a users
+app.get('/users/:email', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const loginUser = await pool.query(
+      'SELECT * FROM users WHERE email = $1 AND password = $2',
+      [email, password]
+    );
+    // res.json(loginUser.rows);
+    res.json(req.body);
+  } catch (err) {
+    console.error(err.message);
   }
 });
