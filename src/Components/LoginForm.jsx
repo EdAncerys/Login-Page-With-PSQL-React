@@ -18,8 +18,29 @@ export default function LoginForm({ props }) {
   // }, [email, password]);
 
   return (
+    // <form style={styles.container} onSubmit={(e) => handleLogin(e)}>
+    //   <div style={styles.header}>Login Form</div>
+    //   <label>
+    //     Email{' '}
+    //     <input
+    //       type="text"
+    //       value={email}
+    //       placeholder="Account email"
+    //       onChange={(e) => setEmail(e.target.value)}
+    //     />
+    //   </label>
+    //   <label>
+    //     Password{' '}
+    //     <input
+    //       type="text"
+    //       value={password}
+    //       placeholder="Password"
+    //       onChange={(e) => setPassword(e.target.value)}
+    //     />
+    //   </label>
+    //   <input type="submit" value="Submit" />
+    // </form>
     <form style={styles.container} onSubmit={(e) => handleLogin(e)}>
-      <div style={styles.header}>Login Form</div>
       <label>
         Email{' '}
         <input

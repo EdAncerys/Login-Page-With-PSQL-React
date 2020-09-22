@@ -60,10 +60,10 @@ const deleteUser = async (id, setUsers, users) => {
 // Log in user
 const handleLogin = async (email, password) => {
   try {
-    const response = await fetch(`http://localhost:5000/users/${email}`);
+    const response = await fetch('http://localhost:5000/users');
     const jsonData = await response.json();
-    if (jsonData.length === 0) console.log('User Not found');
-    else console.log('Data ', jsonData);
+    // if (jsonData.length === 0) console.log('User Not found');
+    // else console.log('Data ', jsonData);
   } catch (err) {
     console.error(err.message);
   }

@@ -78,8 +78,8 @@ app.get('/users/:email', async (req, res) => {
       'SELECT * FROM users WHERE email = $1 AND password = $2',
       [email, password]
     );
-    // res.json(loginUser.rows);
-    res.json(req.body);
+    res.json(loginUser.rows);
+    // res.json(req.body);
   } catch (err) {
     console.error(err.message);
   }
