@@ -58,7 +58,21 @@ const deleteUser = async (id, setUsers, users) => {
 };
 
 // Log in user
-const handleLogin = async (email, password) => {};
+const handleLogin = async (email, password) => {
+  try {
+    const editUser = { email, password };
+    const response = await fetch(`http://localhost:5000/users/${email}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(editUser),
+    });
+    const jsonData = await response.json();
+    console.log(jsonData);
+    // window.location = '/';
+  } catch (err) {
+    console.error('Email or Password Incorrect');
+  }
+};
 
 export default {
   getUsers,
