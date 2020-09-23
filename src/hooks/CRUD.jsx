@@ -37,7 +37,7 @@ const updateUser = async (e, fName, lName, email, password, id) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(editUser),
     });
-
+    // console.log(editUser);
     window.location = '/';
   } catch (err) {
     console.error(err.message);
@@ -58,16 +58,7 @@ const deleteUser = async (id, setUsers, users) => {
 };
 
 // Log in user
-const handleLogin = async (email, password) => {
-  try {
-    const response = await fetch('http://localhost:5000/users');
-    const jsonData = await response.json();
-    // if (jsonData.length === 0) console.log('User Not found');
-    // else console.log('Data ', jsonData);
-  } catch (err) {
-    console.error(err.message);
-  }
-};
+const handleLogin = async (email, password) => {};
 
 export default {
   getUsers,

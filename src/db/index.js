@@ -64,22 +64,22 @@ app.delete('/users/:id', async (req, res) => {
     const deleteUser = await pool.query('DELETE FROM users WHERE id = $1', [
       id,
     ]);
-    res.json('Todo was deleted!');
+    res.json('User was deleted!');
   } catch (err) {
     console.log(err.message);
   }
 });
 
 //login a users
-app.get('/users/:email', async (req, res) => {
+app.post('/users/:email', async (req, res) => {
   try {
     const { email, password } = req.body;
     const loginUser = await pool.query(
       'SELECT * FROM users WHERE email = $1 AND password = $2',
       [email, password]
     );
-    res.json(loginUser.rows);
-    // res.json(req.body);
+
+    res.json(loginUser.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
