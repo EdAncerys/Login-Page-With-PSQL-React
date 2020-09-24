@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import colors from '../config/colors';
 
-export default function Button({ text, onClick }) {
+export default function Button({ text }) {
   const [hover, setHover] = useState(false);
+  const [click, setClick] = useState(false);
+
+  const buttonClick = click ? colors.white : colors.danger;
+  const textClick = click ? colors.primary : colors.white;
+
+  const handleClick = () => {
+    setClick(true);
+    setTimeout(() => setClick(false), 200);
+  };
 
   return (
     <div
       style={{
         ...styles.container,
         ...{
-          backgroundColor: hover ? colors.danger : colors.secondary,
-          color: hover ? colors.secondary : colors.danger,
+          backgroundColor: hover ? buttonClick : colors.secondary,
+          color: hover ? textClick : colors.danger,
         },
       }}
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={onClick}
+      onClick={() => handleClick()}
     >
       {text}
     </div>
