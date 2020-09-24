@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 
-export default function LoginBanner({ props }) {
+export default function LoginBanner({ setLogin }) {
   return (
     <div style={styles.container}>
       <LoginForm />

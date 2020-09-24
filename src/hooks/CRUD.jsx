@@ -37,7 +37,6 @@ const updateUser = async (e, fName, lName, email, password, id) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(editUser),
     });
-    // console.log(editUser);
     window.location = '/';
   } catch (err) {
     console.error(err.message);
@@ -58,7 +57,7 @@ const deleteUser = async (id, setUsers, users) => {
 };
 
 // Log in user
-const handleLogin = async (email, password) => {
+const handleLogin = async (email, password, setLogin) => {
   try {
     const editUser = { email, password };
     const response = await fetch(`http://localhost:5000/users/${email}`, {
@@ -68,9 +67,10 @@ const handleLogin = async (email, password) => {
     });
     const jsonData = await response.json();
     console.log(jsonData);
+    setLogin(true);
     // window.location = '/';
   } catch (err) {
-    console.error('Email or Password Incorrect');
+    console.error(err.message);
   }
 };
 

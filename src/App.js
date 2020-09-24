@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/App.css';
 import Header from './Components/Header';
 import SignupBanner from './Components/SignupBanner';
 import LoginBanner from './Components/LoginBanner';
 
+export const AppContext = React.createContext();
+
 export default function App({ props }) {
   const [login, setLogin] = useState(false);
 
+  useEffect(() => {
+    console.log('welcome');
+  }, [login]);
+
   return (
-    <div className="App" style={styles.container}>
-      <Header />
-      <div style={styles.wrapper}>
-        <SignupBanner />
-        <LoginBanner />
+    <AppContext.Provider value={{ setLogin }}>
+      <div className="App" style={styles.container}>
+        <Header />
+        <div style={styles.wrapper}>
+          <SignupBanner />
+          <LoginBanner />
+        </div>
       </div>
-    </div>
+    </AppContext.Provider>
   );
 }
 
