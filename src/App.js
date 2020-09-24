@@ -8,13 +8,15 @@ export const AppContext = React.createContext();
 
 export default function App({ props }) {
   const [login, setLogin] = useState(false);
+  const [pageOne, setPageOne] = useState(true);
+  const [pageTwo, setPageTwo] = useState(false);
 
   useEffect(() => {
     console.log('welcome');
   }, [login]);
 
   return (
-    <AppContext.Provider value={{ setLogin }}>
+    <AppContext.Provider value={{ setLogin, setPageOne, pageTwo }}>
       <div className="App" style={styles.container}>
         <Header />
         <div style={styles.wrapper}>
