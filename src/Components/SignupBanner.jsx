@@ -40,7 +40,7 @@ export default function SignupBanner({ props }) {
   return (
     <div style={styles.container}>
       <div style={styles.form}>
-        <SignupForm />
+        <SignupForm addUser={addUser} updateUser={updateUser} />
       </div>
 
       {users.length > 0 && (

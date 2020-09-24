@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../App';
 
 import colors from '../config/colors';
 
-export default function SignupForm({
-  fName,
-  lName,
-  email,
-  password,
-  updateUser,
-  addUser,
-  setfName,
-  setlName,
-  setEmail,
-  setPassword,
-}) {
+export default function SignupForm({ addUser, updateUser }) {
+  const {
+    fName,
+    setFName,
+    lName,
+    setLName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+  } = useContext(AppContext);
+
   return (
     <form style={styles.container} onSubmit={(e) => addUser(e)}>
       <div>Please enter your account details below</div>
@@ -23,7 +24,7 @@ export default function SignupForm({
           type="text"
           value={fName}
           placeholder="First Name"
-          onChange={(e) => setfName(e.target.value)}
+          onChange={(e) => setFName(e.target.value)}
         />
       </label>
       <label>
@@ -32,7 +33,7 @@ export default function SignupForm({
           type="text"
           value={lName}
           placeholder="Last Name"
-          onChange={(e) => setlName(e.target.value)}
+          onChange={(e) => setLName(e.target.value)}
         />
       </label>
       <label>
