@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import colors from '../config/colors';
 
-export default function Button({ text }) {
+export default function Button({ text, onClick }) {
   const [hover, setHover] = useState(false);
   const [click, setClick] = useState(false);
 
@@ -11,6 +11,7 @@ export default function Button({ text }) {
   const handleClick = () => {
     setClick(true);
     setTimeout(() => setClick(false), 200);
+    onClick();
   };
 
   return (

@@ -13,15 +13,15 @@ export default function App({ props }) {
 
   useEffect(() => {
     console.log('welcome');
-  }, [login]);
+  }, [login, pageOne, pageTwo]);
 
   return (
-    <AppContext.Provider value={{ setLogin, setPageOne, pageTwo }}>
+    <AppContext.Provider value={{ setLogin, setPageOne, setPageTwo }}>
       <div className="App" style={styles.container}>
         <Header />
         <div style={styles.wrapper}>
-          <SignupBanner />
-          <LoginBanner />
+          {pageOne && <SignupBanner />}
+          {pageTwo && <LoginBanner />}
         </div>
       </div>
     </AppContext.Provider>
@@ -32,7 +32,6 @@ const styles = {
   wrapper: {
     display: 'grid',
     justifyContent: 'center',
-    gridTemplateColumns: 'auto auto',
     columnGap: 30,
   },
 };
