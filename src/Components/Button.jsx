@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import colors from '../config/colors';
 
-export default function Button({ text }) {
+export default function Button({ text, onClick }) {
   const [hover, setHover] = useState(false);
 
   return (
@@ -15,6 +15,7 @@ export default function Button({ text }) {
       }}
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onClick={onClick}
     >
       {text}
     </div>
