@@ -8,7 +8,7 @@ export default function Header({ props }) {
       <div style={styles.logo}>Login Page</div>
       <div style={styles.nav}>
         <Button text="Sign Up" />
-        <div>Login</div>
+        <Button text="Login" />
       </div>
     </div>
   );
