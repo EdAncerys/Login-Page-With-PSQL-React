@@ -66,8 +66,7 @@ const handleLogin = async (email, password, setLogin) => {
       body: JSON.stringify(editUser),
     });
     const jsonData = await response.json();
-    console.log(jsonData);
-    setLogin(true);
+    setLogin(jsonData);
     // window.location = '/';
   } catch (err) {
     console.error(err.message);
