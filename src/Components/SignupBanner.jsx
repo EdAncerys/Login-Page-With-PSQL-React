@@ -1,16 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SignupForm from './SignupForm';
 import db from '../hooks/CRUD';
+import { AppContext } from '../App';
 
 import colors from '../config/colors';
 
 export default function SignupBanner({ props }) {
-  const [fName, setfName] = useState();
-  const [lName, setlName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [users, setUsers] = useState([]);
-  const [id, setId] = useState();
+  const {
+    fName,
+    setFName,
+    lName,
+    setLName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    users,
+    setUsers,
+    id,
+    setId,
+  } = useContext(AppContext);
 
   useEffect(() => {
     db.getUsers(setUsers);
@@ -31,18 +40,7 @@ export default function SignupBanner({ props }) {
   return (
     <div style={styles.container}>
       <div style={styles.form}>
-        <SignupForm
-          fName={fName}
-          setfName={setfName}
-          lName={lName}
-          setlName={setlName}
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          updateUser={updateUser}
-          addUser={addUser}
-        />
+        <SignupForm />
       </div>
 
       {users.length > 0 && (
@@ -61,8 +59,8 @@ export default function SignupBanner({ props }) {
                 <div
                   style={styles.update}
                   onClick={() => {
-                    setfName(user.fname ? user.fname : '');
-                    setlName(user.lname ? user.lname : '');
+                    setFName(user.fname ? user.fname : '');
+                    setLName(user.lname ? user.lname : '');
                     setEmail(user.email ? user.email : '');
                     setPassword(user.password ? user.password : '');
                     setId(user.id);

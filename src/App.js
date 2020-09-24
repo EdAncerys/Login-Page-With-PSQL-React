@@ -10,6 +10,12 @@ export default function App({ props }) {
   const [login, setLogin] = useState(false);
   const [pageOne, setPageOne] = useState(true);
   const [pageTwo, setPageTwo] = useState(false);
+  const [fName, setFName] = useState();
+  const [lName, setLName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [users, setUsers] = useState([]);
+  const [id, setId] = useState();
 
   useEffect(() => {
     console.log('welcome');
@@ -17,7 +23,25 @@ export default function App({ props }) {
 
   return (
     <AppContext.Provider
-      value={{ setLogin, pageOne, setPageOne, pageTwo, setPageTwo }}
+      value={{
+        setLogin,
+        pageOne,
+        setPageOne,
+        pageTwo,
+        setPageTwo,
+        fName,
+        setFName,
+        lName,
+        setLName,
+        email,
+        setEmail,
+        password,
+        setPassword,
+        users,
+        setUsers,
+        id,
+        setId,
+      }}
     >
       <div className="App" style={styles.container}>
         <Header />
