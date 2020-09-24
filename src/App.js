@@ -16,7 +16,9 @@ export default function App({ props }) {
   }, [login, pageOne, pageTwo]);
 
   return (
-    <AppContext.Provider value={{ setLogin, setPageOne, setPageTwo }}>
+    <AppContext.Provider
+      value={{ setLogin, pageOne, setPageOne, pageTwo, setPageTwo }}
+    >
       <div className="App" style={styles.container}>
         <Header />
         <div style={styles.wrapper}>

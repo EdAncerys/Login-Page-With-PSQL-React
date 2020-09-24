@@ -5,11 +5,15 @@ import { AppContext } from '../App';
 import colors from '../config/colors';
 
 export default function Header({ props }) {
-  const { setPageOne, setPageTwo } = useContext(AppContext);
+  const { pageOne, setPageOne, pageTwo, setPageTwo } = useContext(AppContext);
 
   return (
     <div style={styles.container}>
-      <div style={styles.logo}>Login Page</div>
+      <div style={styles.logo}>
+        {' '}
+        {pageOne && <div>Sign Up</div>}
+        {pageTwo && <div>Log In</div>}
+      </div>
       <div style={styles.nav}>
         <Button
           text="Sign Up"
