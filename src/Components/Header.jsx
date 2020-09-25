@@ -5,19 +5,15 @@ import { AppContext } from '../App';
 import colors from '../config/colors';
 
 export default function Header({ props }) {
-  const { login, page, setPage } = useContext(AppContext);
-
-  useEffect(() => {
-    console.log(login.id);
-  }, [login]);
+  const { login, setLogin, page, setPage } = useContext(AppContext);
 
   return (
     <div style={styles.container}>
       <div style={styles.logo}>
-        {!login && (
+        {login && (
           <div style={styles.loginUser}>
-            {login.email} tetetet
-            <Button text="Logout" />
+            {login.email}
+            <Button text="Logout" onClick={() => setLogin(false)} />
           </div>
         )}
         {!login && (
