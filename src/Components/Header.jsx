@@ -5,9 +5,7 @@ import { AppContext } from '../App';
 import colors from '../config/colors';
 
 export default function Header({ props }) {
-  const { login, pageOne, setPageOne, pageTwo, setPageTwo } = useContext(
-    AppContext
-  );
+  const { login, page, setPage } = useContext(AppContext);
 
   useEffect(() => {
     console.log(login.id);
@@ -19,8 +17,8 @@ export default function Header({ props }) {
         {login && <div>{login.email}</div>}
         {!login && (
           <div>
-            {pageOne && <div>Sign Up</div>}
-            {pageTwo && <div>Log In</div>}
+            {page === 1 && <div>Sign Up</div>}
+            {page === 2 && <div>Log In</div>}
           </div>
         )}
       </div>
@@ -28,15 +26,13 @@ export default function Header({ props }) {
         <Button
           text="Sign Up"
           onClick={() => {
-            setPageOne(true);
-            setPageTwo(false);
+            setPage(1);
           }}
         />
         <Button
           text="Login"
           onClick={() => {
-            setPageOne(false);
-            setPageTwo(true);
+            setPage(2);
           }}
         />
       </div>

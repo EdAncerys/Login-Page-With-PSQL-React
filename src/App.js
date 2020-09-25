@@ -8,8 +8,7 @@ export const AppContext = React.createContext();
 
 export default function App({ props }) {
   const [login, setLogin] = useState(false);
-  const [pageOne, setPageOne] = useState(true);
-  const [pageTwo, setPageTwo] = useState(false);
+  const [page, setPage] = useState(1);
   const [fName, setFName] = useState();
   const [lName, setLName] = useState();
   const [email, setEmail] = useState();
@@ -19,17 +18,15 @@ export default function App({ props }) {
 
   useEffect(() => {
     console.log('welcome');
-  }, [login, pageOne, pageTwo]);
+  }, [login]);
 
   return (
     <AppContext.Provider
       value={{
         login,
         setLogin,
-        pageOne,
-        setPageOne,
-        pageTwo,
-        setPageTwo,
+        page,
+        setPage,
         fName,
         setFName,
         lName,
@@ -47,8 +44,8 @@ export default function App({ props }) {
       <div className="App" style={styles.container}>
         <Header />
         <div style={styles.wrapper}>
-          {pageOne && <SignupBanner />}
-          {pageTwo && <LoginBanner />}
+          {page === 1 && <SignupBanner />}
+          {page === 2 && <LoginBanner />}
         </div>
       </div>
     </AppContext.Provider>
