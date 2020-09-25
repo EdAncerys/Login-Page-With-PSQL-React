@@ -14,7 +14,12 @@ export default function Header({ props }) {
   return (
     <div style={styles.container}>
       <div style={styles.logo}>
-        {login && <div>{login.email}</div>}
+        {!login && (
+          <div style={styles.loginUser}>
+            {login.email} tetetet
+            <Button text="Logout" />
+          </div>
+        )}
         {!login && (
           <div>
             {page === 1 && <div>Sign Up</div>}
@@ -58,5 +63,10 @@ const styles = {
     gridTemplateColumns: 'auto auto',
     justifySelf: 'end',
     marginRight: '5vw',
+  },
+  loginUser: {
+    display: 'grid',
+    gridTemplateColumns: 'auto auto',
+    alignItems: 'center',
   },
 };

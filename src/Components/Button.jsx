@@ -34,6 +34,9 @@ export default function Button({ text, onClick }) {
 
 const styles = {
   container: {
+    display: 'grid',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 10,
     padding: 10,
     margin: 5,
