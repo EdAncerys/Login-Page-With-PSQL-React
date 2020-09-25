@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import db from '../hooks/CRUD';
 import { AppContext } from '../App';
+import Button from './Button';
 
 import colors from '../config/colors';
 
@@ -35,7 +36,7 @@ export default function LoginForm({ props }) {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <input type="submit" value="Submit" />
+      <input style={styles.btn} type="submit" value="Login" />
     </form>
   );
 }
@@ -51,8 +52,10 @@ const styles = {
     borderRadius: 10,
     border: `1px solid ${colors.danger}`,
   },
-  header: {
-    display: 'grid',
-    justifyContent: 'center',
+  btn: {
+    height: 40,
+    backgroundColor: colors.primary,
+    borderRadius: 10,
+    cursor: 'pointer',
   },
 };

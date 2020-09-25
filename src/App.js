@@ -8,7 +8,7 @@ export const AppContext = React.createContext();
 
 export default function App({ props }) {
   const [login, setLogin] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const [fName, setFName] = useState();
   const [lName, setLName] = useState();
   const [email, setEmail] = useState();
