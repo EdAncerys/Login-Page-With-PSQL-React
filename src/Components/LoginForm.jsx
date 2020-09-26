@@ -13,12 +13,13 @@ export default function LoginForm({ props }) {
 
   const getUserData = () => {
     let data = sessionStorage.getItem('userSessionStorageData');
+    data = JSON.parse(data);
     console.log(data);
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    db.handleLogin(email, password, setLogin);
+    db.handleLogin(email, password);
   };
 
   return (

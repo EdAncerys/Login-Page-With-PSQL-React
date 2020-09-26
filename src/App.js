@@ -17,7 +17,8 @@ export default function App({ props }) {
   const [id, setId] = useState();
 
   useEffect(() => {
-    console.log('welcome');
+    const userSession = sessionStorage.getItem('userSessionStorageData');
+    if (userSession) setLogin(true);
   }, [login]);
 
   return (

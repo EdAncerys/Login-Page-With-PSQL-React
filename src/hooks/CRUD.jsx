@@ -57,7 +57,7 @@ const deleteUser = async (id, setUsers, users) => {
 };
 
 // Log in user
-const handleLogin = async (email, password, setLogin) => {
+const handleLogin = async (email, password) => {
   try {
     const editUser = { email, password };
     const response = await fetch(`http://localhost:5000/users/${email}`, {
@@ -66,9 +66,8 @@ const handleLogin = async (email, password, setLogin) => {
       body: JSON.stringify(editUser),
     });
     const jsonData = await response.json();
-    setLogin(jsonData);
     sessionStorage.setItem('userSessionStorageData', JSON.stringify(jsonData));
-    // window.location = '/';
+    window.location = '/';
   } catch (err) {
     console.error(err.message);
   }
