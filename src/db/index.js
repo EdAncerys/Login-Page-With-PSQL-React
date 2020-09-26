@@ -28,7 +28,7 @@ app.post('/users', async (req, res) => {
 //get all users
 app.get('/users', async (req, res) => {
   try {
-    const allUsers = await pool.query('SELECT * FROM users');
+    const allUsers = await pool.query('SELECT * FROM users ORDER BY id ASC');
     res.json(allUsers.rows);
   } catch (err) {
     console.error(err.message);
