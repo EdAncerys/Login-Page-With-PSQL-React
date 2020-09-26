@@ -7,13 +7,18 @@ import colors from '../config/colors';
 export default function Header({ props }) {
   const { login, setLogin, page, setPage } = useContext(AppContext);
 
+  const handleLogout = () => {
+    setLogin(false);
+    sessionStorage.clear();
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.logo}>
         {login && (
           <div style={styles.loginUser}>
             {login.email}
-            <Button text="Logout" onClick={() => setLogin(false)} />
+            <Button text="Logout" onClick={() => handleLogout()} />
           </div>
         )}
         {!login && (
