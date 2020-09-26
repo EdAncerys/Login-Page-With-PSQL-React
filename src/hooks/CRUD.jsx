@@ -67,6 +67,7 @@ const handleLogin = async (email, password, setLogin) => {
     });
     const jsonData = await response.json();
     setLogin(jsonData);
+    sessionStorage.setItem('userSessionStorageData', JSON.stringify(jsonData));
     // window.location = '/';
   } catch (err) {
     console.error(err.message);

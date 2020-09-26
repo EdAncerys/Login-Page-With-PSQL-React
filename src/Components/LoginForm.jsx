@@ -11,6 +11,11 @@ export default function LoginForm({ props }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const getUserData = () => {
+    let data = sessionStorage.getItem('userSessionStorageData');
+    console.log(data);
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
     db.handleLogin(email, password, setLogin);
@@ -37,6 +42,7 @@ export default function LoginForm({ props }) {
         />
       </label>
       <input style={styles.btn} type="submit" value="Login" />
+      <Button text="Log User Data" onClick={() => getUserData()} />
     </form>
   );
 }
