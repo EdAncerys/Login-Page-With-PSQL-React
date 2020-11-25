@@ -1,3 +1,15 @@
+## Running app
+
+### Running PSQL Database
+
+Navigate to local repository $ cd in to project directory.
+In the terminal type the following command: $ nodemon index
+
+### Running React app
+
+Navigate to local repository $ cd in to project directory.
+In the terminal type the following command: $ npm start
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
